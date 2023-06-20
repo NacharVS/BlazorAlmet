@@ -1,4 +1,5 @@
 using BlazorAlmet.Data;
+using BlazorAlmet.Servises;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTransient<TrancientService>();
+builder.Services.AddSingleton<SingletonService>();
+builder.Services.AddSingleton<UserService>();
 
 var app = builder.Build();
 

@@ -1,23 +1,41 @@
 ﻿@page "/MyPage"
+@inject UserService service
 
 <h3>Users</h3>
+@if (vFlag)
+{
+    <ListUsers UsersParam="users" IsShown=true DeleteUser="DeleteUser" />
+}
+else
+{
+    <div class="alert alert-secondary mt-4">Name: @service.GetSingleUser().Name </div>
+    <div class="alert alert-secondary mt-4">Name: @service.GetSingleUser().Surname </div>
+    <div class="alert alert-secondary mt-4">Name: @service.GetSingleUser().Email </div>
+    <div class="alert alert-secondary mt-4">Name: @service.GetSingleUser().Vacancy </div>
+}
 
-<ListUsers UsersParam="users" IsShown="flag" DeleteUser="DeleteUser"/>
 
 <button class="btn btn-primary" @onclick="ChangeFlag">Show</button>
+<button class="btn btn-primary" @onclick="ChangeView">Change</button>
 
 
 @code {
     List<User> users;
 
     private bool flag;
+    private bool vFlag;
     private void ChangeFlag()
     {
         flag = !flag;
     }
+
+    private void ChangeView()
+    {
+        vFlag = !vFlag;
+    }
     protected override void OnInitialized()
     {
-        users = User.GetSomeUsers();
+        users = service.GetSomeUsers();
 
     }
 

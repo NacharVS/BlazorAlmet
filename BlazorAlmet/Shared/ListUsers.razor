@@ -1,8 +1,9 @@
-﻿@if (IsShown)
+﻿
+@if (IsShown)
 {
     @if (UsersParam == null)
     {
-        <p><em>Loading...</em></p>
+        @ChildContent
     }
     else
     {
@@ -44,4 +45,6 @@ else
     [Parameter] public List<User> UsersParam { get; set; }
     [Parameter] public bool IsShown { get; set; }
     [Parameter] public EventCallback<User> DeleteUser { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    //[Parameter] public RenderFragment<TItem> Template{ get; set; }
 }
