@@ -2,13 +2,32 @@
 
 <h3>Users</h3>
 
-<ListUsers UsersParam="users"/>
+<ListUsers UsersParam="users" IsShown="flag" DeleteUser="DeleteUser"/>
+
+<button class="btn btn-primary" @onclick="ChangeFlag">Show</button>
+
 
 @code {
     List<User> users;
 
+    private bool flag;
+    private void ChangeFlag()
+    {
+        flag = !flag;
+    }
     protected override void OnInitialized()
     {
         users = User.GetSomeUsers();
+
+    }
+
+    private void DeleteUser(User user)
+    {
+        users.Remove(user);
+    }
+
+    private void MarkForDelete()
+    {
+        
     }
 }

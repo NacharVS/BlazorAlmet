@@ -1,36 +1,47 @@
-﻿@if (UsersParam == null)
+﻿@if (IsShown)
 {
-    <p><em>Loading...</em></p>
+    @if (UsersParam == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>E-Mail</th>
+                    <th>Age</th>
+                    <th>DriverRights</th>
+                    <th>Vacancy</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in UsersParam)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.Surname</td>
+                        <td>@user.Email</td>
+                        <td>@user.Age</td>
+                        <td>@(user.IsDriver ? "Yes" : "NO")</td>
+                        <td>@user.Vacancy</td>
+                        <td><button class="btn btn-danger" @onclick="(()=> DeleteUser.InvokeAsync(user))">Delete</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>E-Mail</th>
-                <th>Age</th>
-                <th>DriverRights</th>
-                <th>Vacancy</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in UsersParam)
-            {
-                <tr>
-                    <td>@user.Name</td>
-                    <td>@user.Surname</td>
-                    <td>@user.Email</td>
-                    <td>@user.Age</td>
-                    <td>@(user.IsDriver ? "Yes" : "NO")</td>
-                    <td>@user.Vacancy</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <p><em>Hidden</em></p>
 }
-
 @code {
     [Parameter] public List<User> UsersParam { get; set; }
+    [Parameter] public bool IsShown { get; set; }
+    [Parameter] public EventCallback<User> DeleteUser { get; set; }
 }
