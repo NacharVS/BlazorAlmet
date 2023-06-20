@@ -6,7 +6,7 @@ namespace BlazorAlmet.Shared
     {
 
     // Demonstrates how a parent component can supply parameters
-    [Parameter] public string? Title { get; set; }
+     [Parameter] public string? Title { get; set; }
 
 
     }

@@ -1,0 +1,36 @@
+﻿@if (UsersParam == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>E-Mail</th>
+                <th>Age</th>
+                <th>DriverRights</th>
+                <th>Vacancy</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in UsersParam)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Email</td>
+                    <td>@user.Age</td>
+                    <td>@(user.IsDriver ? "Yes" : "NO")</td>
+                    <td>@user.Vacancy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public List<User> UsersParam { get; set; }
+}
