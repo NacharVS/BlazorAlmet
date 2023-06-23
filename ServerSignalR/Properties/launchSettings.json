@@ -1,18 +1,18 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:20466",
+      "applicationUrl": "http://localhost:54136",
       "sslPort": 0
     }
   },
   "profiles": {
-    "BlazorAlmet": {
+    "ServerSignalR": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5090",
+      "applicationUrl": "http://localhost:5246",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
